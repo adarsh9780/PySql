@@ -14,9 +14,12 @@ class InitializeTable(object):
         self.table_name = table_name
         self.cursor = cursor
 
+    def unpack(self, list_of_features):
+        return (", ".join(["%s"] * len(list_of_features))) % tuple(list_of_features)
+
     # example:
     # this function will return column name from given table
-    def print_column(self,):
+    def print_columns(self):
         print()
         print("----------> Columns in '{}' are :".format(self.table_name))
         query = 'SELECT * FROM {}'.format(self.table_name)
@@ -43,6 +46,41 @@ class InitializeTable(object):
         result = self.cursor.execute(query)
         for var in result:
             print(var)
-    
+
+    # pass a list of columns/features, if nothing is passed will
+    # print each and every entries present in the table
+    def select(self, columns='*'):
+        print()
+        query = 'SELECT {} FROM {}'.format(self.unpack(columns), self.table_name)
+        result = self.cursor.execute(query)
+        for var in result:
+            print(var)
+
+    def select_distinct(self, feature):
+        print()
+        print("----------> Distinct features are: ")
+        query = 'SELECT DISTINCT {} FROM {}'.format(feature, self.table_name)
+        result = self.cursor.execute(query)
+        for var in result:
+            print(var)
+
+    def count_distinct(self, feature):
+        print()
+        print("----------> Number of distinct {} are: ".format(feature))
+        query = 'SELECT COUNT(DISTINCT {}) FROM {}'.format(feature, self.table_name)
+        result = self.cursor.execute(query)
+        for var in result:
+            print(var)
+
+    def where(self, columns, condition):
+        print()
+        print("----------> Entries along the features {} which satistfy \
+the condition {}".format(self.unpack(columns), condition))
+
+        query = 'SELECT {} FROM {} WHERE {}'.format(self.unpack(columns), self.table_name, condition)
+        result = self.cursor.execute(query)
+        for var in result:
+            print(var)
+
 if __name__ == '__main__':
     pass
