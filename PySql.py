@@ -111,10 +111,7 @@ the condition {}".format(self.unpack(columns), condition))
         query = 'INSERT INTO {} ({}) VALUES ({})'.format(self.table_name,
                                                        self.unpack(columns), 
                                                        self.unpack(values))
-        # print(query)
         result = self.cursor.execute(query)
-        # for var in result:
-        #     print(var)        
 
 if __name__ == '__main__':
     pass
