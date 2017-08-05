@@ -82,5 +82,39 @@ the condition {}".format(self.unpack(columns), condition))
         for var in result:
             print(var)
 
+    def insert(self, columns, values):
+        """
+        DESCRIPTION: Inserts given values in the given features. It may also add duplicate values,
+                     if you are using this function in a script. Therefore make sure you don't forget
+                     to comment it out after used once, else duplicate values will be inserted
+                     every time you would run your file.
+
+        USAGE      : insert(column, values)
+                     column----> list of features
+                                 Make sure to add those features which can't take NULL Values.
+
+                     values----> list of values
+                                 Make sure values are in same order as in features are passed.
+
+        NOTE(1)    : Format of value:
+                     values = ["'value1'", "'value2'", ...... so on]
+                     i.e values are to be passed as strings of string.
+
+        NOTE(2)    : In MariaDB, sqlite3 and some others, you may not need to pass
+                     the features explicitly if you are adding values for all of the 
+                     coulmns.
+                     This functionality is not supported yet.
+        """
+        print()
+        print("----------> Inserting along the features {}".format(self.unpack(columns)))
+
+        query = 'INSERT INTO {} ({}) VALUES ({})'.format(self.table_name,
+                                                       self.unpack(columns), 
+                                                       self.unpack(values))
+        # print(query)
+        result = self.cursor.execute(query)
+        # for var in result:
+        #     print(var)        
+
 if __name__ == '__main__':
     pass

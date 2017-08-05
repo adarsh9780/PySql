@@ -1,14 +1,14 @@
 WorkFlow:
 
-------------------------Master----------------
+------------------------Master-----------------------
 						.
 						.
 						.
 						.
-						......Development
+						......Development--------------------------
 							  .
 							  .
 							  .
 							  .
 							  .
-							  .........Feature(We are working here)
+							  .........Feature(We are working here)---------------------------
