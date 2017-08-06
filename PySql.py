@@ -157,6 +157,19 @@ the condition {}".format(self.unpack(columns), condition))
                                                        self.unpack(values))
         result = self.cursor.execute(query)
 
+    def update(self, list_of_feature_value, condition):
+        print()
+        print('----------> updating ------------>')
+        query = 'UPDATE {} SET {} WHERE {}'.format(self.table_name,
+                                                   self.unpack(list_of_feature_value),
+                                                   condition)
+        result = self.cursor.execute(query)
+        for var in result:
+            print(var)
+
+
+    
+
 
 
 
