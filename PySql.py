@@ -99,7 +99,7 @@ class InitializeTable(object):
                       Similar to "SELECT COUNT(DISTINCT {}) FROM {}"
 
         ARGUMENTS :   feature-----> Whenever & wherever 'feature' is
-                      used it means a single column name is to be passed.
+                      used, it means a single column name is to be passed.
 
         RETURN TYPE : Nothing
 
